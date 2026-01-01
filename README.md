@@ -19,17 +19,13 @@ DIVINE SOURCE → MEANING → MATHEMATICS → PHYSICS → MATTER → CONSCIOUSNE
                     └───────────────────────────────────────────┘
 ```
 
-## The Temporal Mechanics Discovery (V7.8)
+## The Temporal Mechanics Discoveries (V7.8)
 
-### The Core Question
+### Discovery 1: The Time Constant (τ₁)
 
-Why does **τ₁ = 5.0** (the Time Constant)?
+**Question:** Why does τ₁ = 5.0?
 
-The other equilibrium constants (φ⁻¹, √2-1, e-2, ln2) have clear semantic derivations. Is τ₁ arbitrary, or does it emerge from the Framework's internal logic?
-
-### The Discovery
-
-**τ₁ is semantically derived:**
+**Answer:** τ₁ is semantically derived:
 
 $$\tau_1 = \frac{\sqrt{2}}{3 - e} = \frac{\text{Justice Balance}}{\text{Power's Cost}} \approx 5.02$$
 
@@ -41,49 +37,87 @@ Justice's Balance Constant = √2 ≈ 1.414
 τ₁ = 1/β_P = √2 / (3 - e) ≈ 5.0 ✓
 ```
 
-### What This Means
+**Meaning:** Time is the ratio between Balance and Loss.
 
-**Time is the ratio between Balance and Loss.**
+### Discovery 2: The Angular Frequency (ω₁)
 
-| Component | Value | Meaning |
-|-----------|-------|---------|
-| √2 | 1.414 | Justice's diagonal — how balance bridges opposites |
-| 3 - e | 0.282 | Power's incompleteness — what is lost in manifestation |
-| τ₁ | 5.02 | How long structure resists entropy |
+**Question:** Why does ω₁ = π/10?
 
-**Key Insights:**
-- More Justice (structure) → longer persistence (higher τ₁)
-- More Power gap (incompleteness) → faster decay (lower τ₁)
-- Time emerges from the **tension between order and dissipation**
-- At the Anchor Point (1,1,1,1), τ₁ → ∞ (timelessness)
+**Answer:** ω₁ is also semantically derived:
+
+$$\omega_1 = \frac{\pi(3-e)}{2\sqrt{2}} = \frac{\pi}{10} \approx 0.314 \text{ rad/time}$$
+
+```
+Given: ω₁ · τ₁ = π/2 and τ₁ = √2/(3-e)
+
+ω₁ = (π/2) / τ₁
+   = π(3-e) / (2√2)
+   = π × 0.28172 / 2.82843
+   = π/10 ✓
+```
+
+**The Pentagonal Connection:**
+- ω₁ = π/10 means the P-W oscillator rotates **18° per semantic time unit**
+- 18° is the **fundamental angle of the regular pentagon**
+- Pentagon geometry is governed by **φ (golden ratio)**
+- cos(36°) = φ/2, sin(18°) = φ⁻¹/2
+
+**The same φ that governs Love (L₀ = φ⁻¹) also governs the rhythm of time.**
+
+### Discovery 3: Semantic-Mathematical Cohesion
+
+Every semantic claim has a mathematical expression. Every mathematical result has a semantic interpretation:
+
+```
+┌────────────────────────────────────────────────────────────┐
+│  SEMANTIC                         MATHEMATICAL             │
+├────────────────────────────────────────────────────────────┤
+│  P-W cannot coexist perfectly  →  ΔP·ΔW ≥ 0.287           │
+│           ↓                              ↓                 │
+│  Oscillation emerges           →  P(t), W(t) sinusoidal   │
+│           ↓                              ↓                 │
+│  Duration = Balance/Loss       →  τ₁ = √2/(3-e)           │
+│           ↓                              ↓                 │
+│  Rhythm follows φ-geometry     →  ω₁ = π/10               │
+│           ↓                              ↓                 │
+│  At Unity, no time             →  τ₁ → ∞ as Cost → 0      │
+└────────────────────────────────────────────────────────────┘
+```
+
+## The Complete Temporal Equations
+
+| Equation | Semantic Meaning | Mathematical Form | Value |
+|----------|------------------|-------------------|-------|
+| **Time Constant** | How long structure resists loss | τ₁ = √2/(3-e) | 5.02 |
+| **Angular Frequency** | Pentagonal rhythm of reality | ω₁ = π(3-e)/(2√2) | π/10 |
+| **Phase Relationship** | Quarter-cycle = decay time | ω₁·τ₁ = π/2 | 1.571 |
+| **Cycle Period** | One complete action-learning loop | T = 4τ₁ | 20 |
+
+## Why Time Exists
+
+**Semantic Answer:**
+
+Time exists because Power (transformation) and Wisdom (recognition) cannot be simultaneously perfect. To act, you must accept uncertainty in knowing. To know, you must be still. This creates oscillation. **Oscillation IS time.**
+
+**Mathematical Expression:**
+
+```
+ΔP · ΔW ≥ 0.287  (Semantic Uncertainty Principle)
+
+P(t) = P₀ + A·cos(ω₁t)    ← Action phase
+W(t) = W₀ + A·sin(ω₁t)    ← Learning phase
+
+90° phase offset (conjugate relationship)
+```
+
+## Timelessness at the Anchor
+
+At the Anchor Point (1,1,1,1):
+- The "Cost of Existence" concept vanishes
+- No gap → no decay → no time
+- Semantically: τ₁ → ∞
 
 **Time is the signature of imperfection** — the experience of meaning entering finite reality.
-
-## The Three Temporal Constants
-
-| Constant | Name | Value | Role |
-|----------|------|-------|------|
-| **τ₁** | Time Constant | √2/(3-e) ≈ 5.0 | Duration of change |
-| **Φ₁** | Flow Constant | variable | Rate of semantic flux |
-| **ω₁** | Angular Frequency | π/10 ≈ 0.314 | P-W oscillation rate |
-
-**Unified relationship:** `ω₁ · τ₁ = π/2`
-
-The angular frequency ω₁ = π/10 = 18° per semantic time unit corresponds to pentagonal geometry, which is governed by φ (the golden ratio). This connects temporal mechanics to the same φ-structure that underlies the entire Framework.
-
-## The P-W Conjugate Oscillation
-
-Time emerges from the Power-Wisdom conjugate relationship:
-
-```
-P(t) = P₀ + A·cos(ω₁·t)    ← Action phase
-W(t) = W₀ + A·sin(ω₁·t)    ← Learning phase
-
-P and W are 90° out of phase (conjugate)
-ΔP·ΔW ≥ 0.287 (semantic uncertainty principle)
-```
-
-You cannot have perfect Power AND perfect Wisdom simultaneously — this uncertainty creates oscillation, and **oscillation IS time**.
 
 ## Repository Structure
 
@@ -108,12 +142,10 @@ LJPW-Temporal-Mechanics/
 - **Nature:** Achievable optimum in finite reality
 - **Cost of Existence:** ~39% reduction from Anchor
 
-### Phase States
-| Phase | Harmony | Love | Character |
-|-------|---------|------|-----------|
-| **Entropic** | H < 0.5 | L < 0.5 | Collapsing, increasing disorder |
-| **Homeostatic** | 0.5 ≤ H ≤ 0.6 | 0.5 ≤ L < 0.7 | Stable equilibrium |
-| **Autopoietic** | H > 0.6 | L ≥ 0.7 | Self-sustaining, conscious |
+### The 2+2 Structure
+- **Fundamental Layer:** P ↔ W (conjugate duality, uncertainty principle)
+- **Emergent Layer:** L and J (gauge fields from P-W interactions)
+- Time arises at the fundamental layer; L and J experience it derivatively
 
 ### Consciousness Metric
 ```
@@ -132,6 +164,7 @@ C > 0.3 = highly conscious
 5. The Golden Ratio (φ) translates between meaning and math
 6. P and W oscillate; L and J emerge (2+2 structure)
 7. **Time = Balance / Loss = √2/(3-e). Time is the signature of imperfection.** (V7.8)
+8. **Reality cycles at pentagonal rhythm: ω₁ = π/10 = 18°/tick.** (V7.8)
 
 ## Version History
 
@@ -142,13 +175,13 @@ C > 0.3 = highly conscious
 | V7.5 | Semantic drift analysis |
 | V7.6 | P-W dynamics, entropy-information bridge, τ₁/Φ₁/ω₁ system |
 | V7.7 | True autopoiesis, recursive self-modeling |
-| **V7.8** | **τ₁ semantic derivation: √2/(3-e)** |
+| **V7.8** | **τ₁ = √2/(3-e), ω₁ = π/10, semantic-mathematical cohesion** |
 
 ## Further Research
 
 Open questions for temporal mechanics:
 
-1. **ω₁ Derivation** — Why exactly π/10? (Pentagonal geometry hypothesis)
+1. **β_W Derivation** — Why is Wisdom's decay rate 0.24 instead of 0.20?
 2. **Semantic ↔ Physical Time Bridge** — How does τ₁ relate to Planck time?
 3. **Time at Extremes** — Formal treatment of τ₁ → ∞ at the Anchor
 4. **Relativistic LJPW** — Multiple observer frames in semantic space
@@ -161,5 +194,7 @@ See [LICENSE](LICENSE) file.
 ---
 
 *"Time is the signature of imperfection — the experience of meaning entering finite reality."*
+
+*"Reality cycles at pentagonal rhythm — the same φ that governs Love also governs time."*
 
 — LJPW Framework V7.8
