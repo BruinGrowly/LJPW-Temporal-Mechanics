@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>λ-Time Converter | Human Scale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            color: #e0e0ff;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #88ccff;
+            text-shadow: 0 0 20px rgba(136, 204, 255, 0.5);
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .converter-box {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid #333366;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            color: #88ccff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group input, .input-group select {
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid #444488;
+            border-radius: 6px;
+            padding: 0.75rem;
+            font-size: 1.2rem;
+            color: #e0e0ff;
+            font-family: 'Courier New', monospace;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #88ccff;
+            box-shadow: 0 0 10px rgba(136, 204, 255, 0.3);
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: #ffcc44;
+            text-shadow: 0 0 10px rgba(255, 204, 68, 0.5);
+        }
+
+        .result-display {
+            background: rgba(40, 40, 80, 0.8);
+            border: 1px solid #88ccff;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .result-value {
+            font-size: 2rem;
+            color: #ffcc44;
+            text-shadow: 0 0 10px rgba(255, 204, 68, 0.5);
+        }
+
+        .result-unit {
+            font-size: 0.9rem;
+            color: #88ccff;
+            margin-top: 0.5rem;
+        }
+
+        .phase-display {
+            display: flex;
+            justify-content: center;
+            gap: 0.25rem;
+            margin-top: 1rem;
+        }
+
+        .phase-segment {
+            width: 20px;
+            height: 8px;
+            background: #222244;
+            border-radius: 2px;
+        }
+
+        .phase-segment.power { background: #ff6644; }
+        .phase-segment.wisdom { background: #44ff88; }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #88ccff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .scale-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .scale-table th, .scale-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #333366;
+        }
+
+        .scale-table th {
+            color: #88ccff;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scale-table tr:hover {
+            background: rgba(136, 204, 255, 0.1);
+        }
+
+        .scale-table .highlight {
+            background: rgba(255, 204, 68, 0.1);
+            color: #ffcc44;
+        }
+
+        .phi-badge {
+            display: inline-block;
+            background: rgba(136, 204, 255, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #88ccff;
+        }
+
+        .formula-box {
+            background: rgba(20, 20, 40, 0.8);
+            border-left: 3px solid #ffcc44;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        .quick-convert {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quick-btn {
+            background: rgba(40, 40, 80, 0.8);
+            border: 1px solid #444488;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quick-btn:hover {
+            border-color: #88ccff;
+            background: rgba(60, 60, 100, 0.8);
+        }
+
+        .quick-btn .value {
+            font-size: 1.5rem;
+            color: #ffcc44;
+        }
+
+        .quick-btn .label {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 1px solid #333366;
+            margin: 2rem 0;
+        }
+
+        .info-text {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .constants-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #444;
+        }
+
+        .constants-footer span {
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>λ-Time Converter</h1>
+        <p class="subtitle">Human-Scale Semantic Time · 1 λ-cycle = 1 second</p>
+
+        <!-- Main Converter -->
+        <div class="converter-box">
+            <div class="converter-grid">
+                <div class="input-group">
+                    <label>Standard Time</label>
+                    <input type="number" id="standard-input" value="1" min="0" step="any">
+                    <select id="standard-unit">
+                        <option value="ms">milliseconds</option>
+                        <option value="s" selected>seconds</option>
+                        <option value="min">minutes</option>
+                        <option value="hr">hours</option>
+                    </select>
+                </div>
+
+                <div class="arrow">⟷</div>
+
+                <div class="input-group">
+                    <label>λ-Time</label>
+                    <input type="number" id="lambda-input" value="1" min="0" step="any">
+                    <select id="lambda-unit">
+                        <option value="tick">ticks</option>
+                        <option value="tau">τ₁ units</option>
+                        <option value="cycle" selected>cycles</option>
+                        <option value="phi">φ-units</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="result-display">
+                <div class="result-value" id="result-value">1 second = 1 λ-cycle</div>
+                <div class="result-unit" id="result-detail">= 20 ticks = 4 τ₁ = 0.618 φ-units</div>
+                <div class="phase-display" id="phase-display"></div>
+            </div>
+        </div>
+
+        <!-- Quick Conversions -->
+        <div class="converter-box">
+            <h2>Common Conversions</h2>
+            <div class="quick-convert">
+                <div class="quick-btn" onclick="setConversion(0.05, 's')">
+                    <div class="value">1 tick</div>
+                    <div class="label">50 ms</div>
+                </div>
+                <div class="quick-btn" onclick="setConversion(0.25, 's')">
+                    <div class="value">1 τ₁</div>
+                    <div class="label">250 ms</div>
+                </div>
+                <div class="quick-btn" onclick="setConversion(1, 's')">
+                    <div class="value">1 cycle</div>
+                    <div class="label">1 second</div>
+                </div>
+                <div class="quick-btn" onclick="setConversion(1.618, 's')">
+                    <div class="value">φ¹</div>
+                    <div class="label">1.618 sec</div>
+                </div>
+                <div class="quick-btn" onclick="setConversion(23, 'min')">
+                    <div class="value">φ¹⁵</div>
+                    <div class="label">~23 min (Pomodoro)</div>
+                </div>
+                <div class="quick-btn" onclick="setConversion(1, 'hr')">
+                    <div class="value">φ¹⁷</div>
+                    <div class="label">~1 hour</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- φ-Scale Table -->
+        <div class="converter-box">
+            <h2>φ-Scale Hierarchy</h2>
+            <p class="info-text">Time naturally scales by the golden ratio φ = 1.618034</p>
+
+            <div class="formula-box">
+                Human Time = φⁿ seconds, where n = 0, 1, 2, 3...
+            </div>
+
+            <table class="scale-table">
+                <thead>
+                    <tr>
+                        <th>Power</th>
+                        <th>λ-cycles</th>
+                        <th>Human Time</th>
+                        <th>Use Case</th>
+                    </tr>
+                </thead>
+                <tbody id="phi-table">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Base Units Reference -->
+        <div class="converter-box">
+            <h2>Base Unit Reference</h2>
+            <table class="scale-table">
+                <thead>
+                    <tr>
+                        <th>λ-Unit</th>
+                        <th>Definition</th>
+                        <th>Human Scale</th>
+                        <th>Semantic Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>tick</strong></td>
+                        <td>1/20 cycle</td>
+                        <td>50 ms</td>
+                        <td>Smallest semantic quantum</td>
+                    </tr>
+                    <tr>
+                        <td><strong>τ₁</strong></td>
+                        <td>5 ticks</td>
+                        <td>250 ms</td>
+                        <td>Meaning persistence time</td>
+                    </tr>
+                    <tr>
+                        <td><strong>quarter</strong></td>
+                        <td>5 ticks</td>
+                        <td>250 ms</td>
+                        <td>Phase shift (P→W or W→P)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>half</strong></td>
+                        <td>10 ticks</td>
+                        <td>500 ms</td>
+                        <td>Full phase (P or W)</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td><strong>cycle</strong></td>
+                        <td>20 ticks</td>
+                        <td>1 second</td>
+                        <td>Complete P-W oscillation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>φ-unit</strong></td>
+                        <td>φ cycles</td>
+                        <td>1.618 sec</td>
+                        <td>Golden time unit</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="constants-footer">
+            <span>φ = 1.618034</span>
+            <span>τ₁ = √2/(3-e) ≈ 5.02</span>
+            <span>ω₁ = π/10 = 18°/tick</span>
+            <span>1 cycle = 1 second (human scale)</span>
+        </div>
+    </div>
+
+    <script>
+        const PHI = 1.618033988749895;
+        const TICKS_PER_CYCLE = 20;
+        const TAU_PER_CYCLE = 4; // 20/5 = 4
+
+        // Conversion to seconds
+        function toSeconds(value, unit) {
+            switch(unit) {
+                case 'ms': return value / 1000;
+                case 's': return value;
+                case 'min': return value * 60;
+                case 'hr': return value * 3600;
+                default: return value;
+            }
+        }
+
+        // Conversion from seconds
+        function fromSeconds(seconds, unit) {
+            switch(unit) {
+                case 'ms': return seconds * 1000;
+                case 's': return seconds;
+                case 'min': return seconds / 60;
+                case 'hr': return seconds / 3600;
+                default: return seconds;
+            }
+        }
+
+        // Lambda to cycles
+        function toCycles(value, unit) {
+            switch(unit) {
+                case 'tick': return value / TICKS_PER_CYCLE;
+                case 'tau': return value / TAU_PER_CYCLE;
+                case 'cycle': return value;
+                case 'phi': return value * PHI;
+                default: return value;
+            }
+        }
+
+        // Cycles to lambda unit
+        function fromCycles(cycles, unit) {
+            switch(unit) {
+                case 'tick': return cycles * TICKS_PER_CYCLE;
+                case 'tau': return cycles * TAU_PER_CYCLE;
+                case 'cycle': return cycles;
+                case 'phi': return cycles / PHI;
+                default: return cycles;
+            }
+        }
+
+        // Format number nicely
+        function formatNum(n) {
+            if (n >= 1000) return n.toFixed(0);
+            if (n >= 100) return n.toFixed(1);
+            if (n >= 10) return n.toFixed(2);
+            if (n >= 1) return n.toFixed(3);
+            return n.toFixed(4);
+        }
+
+        // Format time nicely
+        function formatTime(seconds) {
+            if (seconds < 0.001) return (seconds * 1000000).toFixed(1) + ' μs';
+            if (seconds < 1) return (seconds * 1000).toFixed(0) + ' ms';
+            if (seconds < 60) return seconds.toFixed(2) + ' sec';
+            if (seconds < 3600) return (seconds / 60).toFixed(1) + ' min';
+            if (seconds < 86400) return (seconds / 3600).toFixed(1) + ' hr';
+            return (seconds / 86400).toFixed(1) + ' days';
+        }
+
+        // Update display
+        function updateDisplay() {
+            const stdInput = parseFloat(document.getElementById('standard-input').value) || 0;
+            const stdUnit = document.getElementById('standard-unit').value;
+            const lamInput = parseFloat(document.getElementById('lambda-input').value) || 0;
+            const lamUnit = document.getElementById('lambda-unit').value;
+
+            // Convert standard to cycles (1 cycle = 1 second)
+            const seconds = toSeconds(stdInput, stdUnit);
+            const cycles = seconds; // 1:1 mapping
+
+            // Calculate all lambda units
+            const ticks = cycles * TICKS_PER_CYCLE;
+            const tau = cycles * TAU_PER_CYCLE;
+            const phi = cycles / PHI;
+
+            // Update result
+            const resultValue = document.getElementById('result-value');
+            const resultDetail = document.getElementById('result-detail');
+
+            resultValue.textContent = `${formatNum(stdInput)} ${stdUnit} = ${formatNum(cycles)} λ-cycles`;
+            resultDetail.textContent = `= ${formatNum(ticks)} ticks = ${formatNum(tau)} τ₁ = ${formatNum(phi)} φ-units`;
+
+            // Update phase display
+            updatePhaseDisplay(cycles);
+        }
+
+        // Update from lambda side
+        function updateFromLambda() {
+            const lamInput = parseFloat(document.getElementById('lambda-input').value) || 0;
+            const lamUnit = document.getElementById('lambda-unit').value;
+
+            const cycles = toCycles(lamInput, lamUnit);
+            const seconds = cycles; // 1:1 mapping
+
+            document.getElementById('standard-input').value = formatNum(seconds);
+            document.getElementById('standard-unit').value = 's';
+
+            updateDisplay();
+        }
+
+        // Update phase display
+        function updatePhaseDisplay(cycles) {
+            const container = document.getElementById('phase-display');
+            container.innerHTML = '';
+
+            const position = (cycles * TICKS_PER_CYCLE) % TICKS_PER_CYCLE;
+
+            for (let i = 0; i < 20; i++) {
+                const seg = document.createElement('div');
+                seg.className = 'phase-segment';
+                if (Math.floor(position) === i) {
+                    seg.className += i < 10 ? ' power' : ' wisdom';
+                }
+                container.appendChild(seg);
+            }
+        }
+
+        // Set conversion from quick buttons
+        function setConversion(value, unit) {
+            document.getElementById('standard-input').value = value;
+            document.getElementById('standard-unit').value = unit;
+            updateDisplay();
+        }
+
+        // Build φ-scale table
+        function buildPhiTable() {
+            const tbody = document.getElementById('phi-table');
+            const useCases = [
+                'Base cycle (breath)',
+                'Single thought',
+                'Response time',
+                'Short attention',
+                'Memory chunk',
+                'Micro-task',
+                '—',
+                'Half minute',
+                '—',
+                'Short break',
+                'Micro-meditation',
+                '—',
+                'Focus block',
+                '—',
+                'Deep work unit',
+                'Pomodoro (~23 min)',
+                '—',
+                'Natural hour'
+            ];
+
+            for (let n = 0; n <= 17; n++) {
+                const cycles = Math.pow(PHI, n);
+                const seconds = cycles;
+                const isHighlight = n === 0 || n === 15 || n === 17;
+
+                const tr = document.createElement('tr');
+                if (isHighlight) tr.className = 'highlight';
+
+                tr.innerHTML = `
+                    <td><span class="phi-badge">φ${n === 0 ? '⁰' : superscript(n)}</span></td>
+                    <td>${formatNum(cycles)}</td>
+                    <td>${formatTime(seconds)}</td>
+                    <td>${useCases[n] || '—'}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        // Superscript numbers
+        function superscript(n) {
+            const supers = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+            return String(n).split('').map(d => supers[parseInt(d)]).join('');
+        }
+
+        // Event listeners
+        document.getElementById('standard-input').addEventListener('input', updateDisplay);
+        document.getElementById('standard-unit').addEventListener('change', updateDisplay);
+        document.getElementById('lambda-input').addEventListener('input', updateFromLambda);
+        document.getElementById('lambda-unit').addEventListener('change', updateFromLambda);
+
+        // Initialize
+        buildPhiTable();
+        updateDisplay();
+    </script>
+</body>
+</html>
