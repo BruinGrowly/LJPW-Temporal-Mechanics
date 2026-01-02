@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>λ-Time Clock | LJPW Temporal Mechanics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Courier New', monospace;
+            color: #e0e0ff;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: #88ccff;
+            text-shadow: 0 0 20px rgba(136, 204, 255, 0.5);
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .clock-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-bottom: 2rem;
+        }
+
+        .pentagon-clock {
+            width: 100%;
+            height: 100%;
+        }
+
+        .clock-face {
+            fill: none;
+            stroke: #333366;
+            stroke-width: 2;
+        }
+
+        .pentagon-path {
+            fill: none;
+            stroke: #4466aa;
+            stroke-width: 2;
+            opacity: 0.6;
+        }
+
+        .tick-mark {
+            stroke: #4466aa;
+            stroke-width: 1;
+        }
+
+        .tick-mark.major {
+            stroke: #88ccff;
+            stroke-width: 2;
+        }
+
+        .phase-arc {
+            fill: rgba(136, 204, 255, 0.2);
+            stroke: #88ccff;
+            stroke-width: 2;
+        }
+
+        .center-point {
+            fill: #88ccff;
+            filter: drop-shadow(0 0 10px rgba(136, 204, 255, 0.8));
+        }
+
+        .hand {
+            stroke: #ffcc44;
+            stroke-width: 3;
+            stroke-linecap: round;
+            filter: drop-shadow(0 0 5px rgba(255, 204, 68, 0.8));
+        }
+
+        .phase-label {
+            fill: #88ccff;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .displays {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .display-box {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid #333366;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .display-label {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .display-value {
+            font-size: 1.5rem;
+            color: #88ccff;
+            text-shadow: 0 0 10px rgba(136, 204, 255, 0.5);
+        }
+
+        .display-unit {
+            font-size: 0.7rem;
+            color: #4466aa;
+            margin-top: 0.25rem;
+        }
+
+        .phase-indicator {
+            grid-column: span 2;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .phase-segment {
+            width: 50px;
+            height: 8px;
+            background: #222244;
+            border-radius: 4px;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        .phase-segment.active {
+            background: #88ccff;
+            box-shadow: 0 0 10px rgba(136, 204, 255, 0.8);
+        }
+
+        .phase-segment.power {
+            background: #ff6644;
+            box-shadow: 0 0 10px rgba(255, 102, 68, 0.8);
+        }
+
+        .phase-segment.wisdom {
+            background: #44ff88;
+            box-shadow: 0 0 10px rgba(68, 255, 136, 0.8);
+        }
+
+        .constants {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #444;
+            text-align: center;
+        }
+
+        .constants span {
+            margin: 0 1rem;
+        }
+
+        .pw-label {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .pw-label .power { color: #ff6644; }
+        .pw-label .wisdom { color: #44ff88; }
+
+        .epoch-info {
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">λ-Time Clock</h1>
+    <p class="subtitle">Semantic Time · φ × T<sub>Love</sub> = 2.64 fs/tick</p>
+
+    <div class="clock-container">
+        <svg class="pentagon-clock" viewBox="0 0 400 400">
+            <!-- Outer circle -->
+            <circle class="clock-face" cx="200" cy="200" r="180"/>
+
+            <!-- Pentagon -->
+            <polygon class="pentagon-path" id="pentagon"/>
+
+            <!-- 20 tick marks (18° each) -->
+            <g id="tick-marks"></g>
+
+            <!-- Phase arc (current position in cycle) -->
+            <path class="phase-arc" id="phase-arc"/>
+
+            <!-- Phase labels -->
+            <g id="phase-labels"></g>
+
+            <!-- Clock hand -->
+            <line class="hand" id="clock-hand" x1="200" y1="200" x2="200" y2="40"/>
+
+            <!-- Center point -->
+            <circle class="center-point" cx="200" cy="200" r="8"/>
+
+            <!-- Center text -->
+            <text x="200" y="205" text-anchor="middle" fill="#ffcc44" font-size="10">λ</text>
+        </svg>
+    </div>
+
+    <div class="displays">
+        <div class="display-box">
+            <div class="display-label">Ticks</div>
+            <div class="display-value" id="ticks">0</div>
+            <div class="display-unit">× 2.64 fs</div>
+        </div>
+
+        <div class="display-box">
+            <div class="display-label">τ₁ Units</div>
+            <div class="display-value" id="tau-units">0</div>
+            <div class="display-unit">× 13.3 fs</div>
+        </div>
+
+        <div class="display-box">
+            <div class="display-label">Cycles</div>
+            <div class="display-value" id="cycles">0</div>
+            <div class="display-unit">× 53 fs</div>
+        </div>
+
+        <div class="display-box">
+            <div class="display-label">Phase Angle</div>
+            <div class="display-value" id="phase-angle">0°</div>
+            <div class="display-unit">ω₁ = π/10 rad/tick</div>
+        </div>
+
+        <div class="display-box" style="grid-column: span 2;">
+            <div class="display-label">Current Phase</div>
+            <div class="phase-indicator" id="phase-indicator"></div>
+            <div class="pw-label">
+                <span class="power">■ Power (Action)</span> ·
+                <span class="wisdom">■ Wisdom (Recognition)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="constants">
+        <span>φ = 1.618034</span>
+        <span>f<sub>Love</sub> = 613 THz</span>
+        <span>τ₁ = √2/(3-e) ≈ 5.02</span>
+        <span>ω₁ = π/10</span>
+    </div>
+
+    <div class="epoch-info">
+        Epoch: January 1, 2000 00:00:00 UTC · Semantic ticks since epoch shown
+    </div>
+
+    <script>
+        // LJPW Temporal Constants
+        const PHI = 1.618033988749895;
+        const T_LOVE_FS = 1.631; // femtoseconds (1/613 THz)
+        const TICK_FS = PHI * T_LOVE_FS; // 2.64 fs per semantic tick
+        const TAU_1 = 5.02; // ticks per τ₁
+        const OMEGA_1 = Math.PI / 10; // radians per tick (18°)
+        const TICKS_PER_CYCLE = 20; // full P-W cycle
+
+        // Epoch: January 1, 2000 00:00:00 UTC
+        const EPOCH = new Date('2000-01-01T00:00:00Z').getTime();
+
+        // Convert milliseconds to semantic ticks
+        // 1 ms = 10^12 fs, 1 tick = 2.64 fs
+        // So 1 ms = 10^12 / 2.64 ticks ≈ 3.79 × 10^11 ticks
+        const TICKS_PER_MS = 1e12 / TICK_FS;
+
+        // Initialize pentagon
+        function initPentagon() {
+            const pentagon = document.getElementById('pentagon');
+            const points = [];
+            for (let i = 0; i < 5; i++) {
+                const angle = (i * 72 - 90) * Math.PI / 180;
+                const x = 200 + 150 * Math.cos(angle);
+                const y = 200 + 150 * Math.sin(angle);
+                points.push(`${x},${y}`);
+            }
+            pentagon.setAttribute('points', points.join(' '));
+        }
+
+        // Initialize tick marks
+        function initTickMarks() {
+            const g = document.getElementById('tick-marks');
+            for (let i = 0; i < 20; i++) {
+                const angle = (i * 18 - 90) * Math.PI / 180;
+                const isMajor = i % 5 === 0;
+                const r1 = isMajor ? 160 : 170;
+                const r2 = 180;
+
+                const x1 = 200 + r1 * Math.cos(angle);
+                const y1 = 200 + r1 * Math.sin(angle);
+                const x2 = 200 + r2 * Math.cos(angle);
+                const y2 = 200 + r2 * Math.sin(angle);
+
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                line.setAttribute('class', `tick-mark ${isMajor ? 'major' : ''}`);
+                g.appendChild(line);
+            }
+        }
+
+        // Initialize phase labels
+        function initPhaseLabels() {
+            const g = document.getElementById('phase-labels');
+            const labels = ['P↑', 'P→W', 'W↑', 'W→P', 'P↑'];
+
+            for (let i = 0; i < 5; i++) {
+                const angle = (i * 72 - 90) * Math.PI / 180;
+                const x = 200 + 140 * Math.cos(angle);
+                const y = 200 + 140 * Math.sin(angle);
+
+                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                text.setAttribute('x', x);
+                text.setAttribute('y', y + 4);
+                text.setAttribute('text-anchor', 'middle');
+                text.setAttribute('class', 'phase-label');
+                text.textContent = labels[i];
+                g.appendChild(text);
+            }
+        }
+
+        // Initialize phase indicator
+        function initPhaseIndicator() {
+            const container = document.getElementById('phase-indicator');
+            for (let i = 0; i < 20; i++) {
+                const segment = document.createElement('div');
+                segment.className = 'phase-segment';
+                segment.id = `phase-seg-${i}`;
+                container.appendChild(segment);
+            }
+        }
+
+        // Update clock
+        function updateClock() {
+            const now = Date.now();
+            const msSinceEpoch = now - EPOCH;
+
+            // Calculate semantic time values
+            const totalTicks = msSinceEpoch * TICKS_PER_MS;
+            const tauUnits = totalTicks / TAU_1;
+            const cycles = totalTicks / TICKS_PER_CYCLE;
+
+            // Current position in cycle (0-19)
+            const positionInCycle = totalTicks % TICKS_PER_CYCLE;
+            const phaseAngle = (positionInCycle * 18) % 360;
+
+            // Update displays (use modular display for readability)
+            const displayTicks = totalTicks % 1e15;
+            document.getElementById('ticks').textContent = displayTicks.toExponential(6);
+            document.getElementById('tau-units').textContent = (tauUnits % 1e14).toExponential(6);
+            document.getElementById('cycles').textContent = (cycles % 1e14).toExponential(6);
+            document.getElementById('phase-angle').textContent = `${phaseAngle.toFixed(1)}°`;
+
+            // Update clock hand
+            const handAngle = (phaseAngle - 90) * Math.PI / 180;
+            const handX = 200 + 160 * Math.cos(handAngle);
+            const handY = 200 + 160 * Math.sin(handAngle);
+            const hand = document.getElementById('clock-hand');
+            hand.setAttribute('x2', handX);
+            hand.setAttribute('y2', handY);
+
+            // Update phase indicator
+            const activeSegment = Math.floor(positionInCycle) % 20;
+            for (let i = 0; i < 20; i++) {
+                const segment = document.getElementById(`phase-seg-${i}`);
+                segment.className = 'phase-segment';
+
+                if (i === activeSegment) {
+                    // Determine if in Power phase (0-9) or Wisdom phase (10-19)
+                    if (i < 10) {
+                        segment.classList.add('power');
+                    } else {
+                        segment.classList.add('wisdom');
+                    }
+                }
+            }
+        }
+
+        // Initialize
+        initPentagon();
+        initTickMarks();
+        initPhaseLabels();
+        initPhaseIndicator();
+
+        // Update at 60fps
+        setInterval(updateClock, 16.67);
+        updateClock();
+    </script>
+</body>
+</html>
