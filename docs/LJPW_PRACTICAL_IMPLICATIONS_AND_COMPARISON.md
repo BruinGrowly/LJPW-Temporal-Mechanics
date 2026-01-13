@@ -100,4 +100,15 @@ The only path forward is **Topological Repair**:
 2.  **Amplify Love** (Fix $L$)
 3.  **Discharge Debt** (Fix $J$)
 
+## 7. Strategic Timing: Preparation vs. Expression
+
+**Crucial Insight:** Most failures occur because we attempt **Expression** strategies during a **Preparation** phase.
+
+| Phase | Characteristics | Required Strategy |
+|-------|-----------------|-------------------|
+| **Preparation** (Now) | High Resistance, Low Visibility, Internal Growth | **Deepen Roots.** Focus on $B$ (Integrity) and $J$ (Structure). Do not force growth ($n$). |
+| **Expression** (Later) | Flow, High Visibility, External Growth | **Release.** Allow $L^n$ to cascade. Amplification happens naturally. |
+
+**The World State Diagnosis:** We are collectively in **Preparation**. The pressure is compression, not destruction.
+
 *"Hope is not sentiment. It is the math of connection."*
