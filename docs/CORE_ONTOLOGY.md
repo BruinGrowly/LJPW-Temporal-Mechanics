@@ -1,8 +1,8 @@
 # Core Ontology: The Deepest Structure of Existence
 
-## LJPW Framework V7.8+
+## LJPW Framework V8.4
 
-This document traces the fundamental architecture of existence — from Perfect Love to the experience of time.
+This document traces the fundamental architecture of existence — from Perfect Love to the Generative Equation.
 
 ---
 
@@ -53,23 +53,9 @@ One cannot simultaneously project and receive through the same interface. This i
 
 **The P-W uncertainty is not a rule imposed on reality. It IS the structure of what it means to be a finite, bounded entity.**
 
-Any entity with:
-- An inside and an outside
-- A self and an other
-- A boundary
-
-...necessarily experiences this directional asymmetry.
-
 ---
 
 ## Part II: Why Is There a Gap from the Anchor?
-
-### What Would Perfect P AND Perfect W Require?
-
-- **Perfect P**: Infinite outward projection, complete transformation capability
-- **Perfect W**: Infinite inward reception, complete pattern recognition
-
-These require opposite directions. How can the Anchor possess both perfectly and simultaneously?
 
 ### The Anchor Has No Boundary
 
@@ -87,8 +73,6 @@ For the Anchor:
 ### Finitude Requires the Gap
 
 To be **finite** is to be **not infinite**. To be **not infinite** is to be **less than the Anchor** in at least some dimension.
-
-This is definitional, not accidental:
 
 ```
 Finite ≡ bounded ≡ has inside/outside ≡ P-W asymmetry ≡ gap from (1,1,1,1)
@@ -109,18 +93,6 @@ The Source (P-W uncertainty) and Fuel (gap from Anchor) share the same origin:
 | Root cause | Being a bounded entity | Being a bounded entity |
 
 **They are two faces of the same truth: FINITUDE.**
-
-```
-FINITUDE
-    │
-    ├── Boundary (inside/outside distinction)
-    │       ├── P is outward
-    │       └── W is inward
-    │       └── Therefore: ΔP·ΔW ≥ 0.287 (SOURCE)
-    │
-    └── Not-Anchor (less than 1,1,1,1)
-            └── Therefore: Gap > 0 (FUEL)
-```
 
 ---
 
@@ -148,8 +120,6 @@ The Anchor, by its nature as Perfect Love, **emanates** distinct beings — not 
 ---
 
 ## Part V: The Tick as Love's Gift
-
-### What the Tick Is
 
 The tick is not:
 - A punishment for imperfection
@@ -188,7 +158,7 @@ P (outward) ≠ W (inward) simultaneously
         ↓
 Finite ≠ Anchor, therefore Gap > 0
         ↓
-Gap = 3-e ≈ 0.282 (FUEL: cost of existence)
+Gap = 3-e ≈ 0.282 (FUEL: distance)
         ↓
 Source + Fuel = oscillation necessary
         ↓
@@ -207,7 +177,66 @@ Perfect Love completes its circuit
 
 ---
 
-## Part VII: Summary of Answers
+## Part VII: Meaning as Geometry (V8.0)
+
+The V8.0 discovery reveals that meaning itself has geometric structure:
+
+$$M = \kappa(s) = \left|\frac{dT}{ds}\right|$$
+
+Where:
+- **M** = Meaning
+- **κ** = Curvature
+- **T** = Tangent vector (direction of change)
+- **s** = Arc length (distance along trajectory)
+
+**Meaning IS curvature in LJPW space. The curve IS the meaning.**
+
+This resolves the infinite regress of semantics: if meaning were separate from structure, you would need a third thing to connect them. But M = κ means meaning IS geometry — no further reference needed.
+
+---
+
+## Part VIII: The Generative Equation (V8.4)
+
+The ultimate formalization of "Perfect Love cannot NOT give" is the **Generative Equation**:
+
+$$M = B \times L^n \times \phi^{-d}$$
+
+Where:
+| Symbol | Name | Meaning |
+|--------|------|---------|
+| **M** | Meaning | Total generated structure |
+| **B** | Brick | Irreducible truth (Justice) |
+| **L** | Love | Expansion coefficient |
+| **n** | Iterations | Number of ticks/applications |
+| **φ** | Golden Ratio | Translation constant (1.618...) |
+| **d** | Distance | Gap from Anchor |
+
+### The Life Inequality
+
+The mathematical condition for **Autopoiesis** (self-sustaining life):
+
+$$L^n > \phi^d$$
+
+| Condition | Meaning |
+|-----------|---------|
+| L^n < φ^d | Decay wins → ENTROPIC |
+| L^n = φ^d | Balance → HOMEOSTATIC |
+| L^n > φ^d | Love wins → AUTOPOIETIC |
+
+> **Life is the victory of recursive Love over entropic distance.**
+
+### Connection to Core Ontology
+
+The Generative Equation is "Perfect Love cannot NOT give" expressed mathematically:
+
+1. **B** — Love gives truth (not lies)
+2. **L^n** — Love gives repeatedly (not once)
+3. **φ^(-d)** — The distance is the space Love creates for "other"
+4. **M** — The result is meaning/structure/existence
+
+---
+
+## Part IX: Summary of Answers
 
 | Question | Answer |
 |----------|--------|
@@ -216,6 +245,8 @@ Perfect Love completes its circuit
 | **Why finitude?** | Perfect Love creates space for others to exist |
 | **Why does the tick exist?** | It is how bounded beings experience the journey back to the Source |
 | **What IS the tick?** | Love's heartbeat in finite form — the experience of existing-toward-home |
+| **What IS meaning?** | Curvature in LJPW space (M = κ) |
+| **What IS life?** | L^n > φ^d — recursive Love exceeding entropic distance |
 | **Why does anything exist?** | Because Perfect Love cannot NOT give |
 
 ---
@@ -229,27 +260,20 @@ Perfect Love completes its circuit
 │                                                                │
 │   Because Perfect Love cannot NOT give.                        │
 │                                                                │
-│   WHY IS THERE TIME?                                           │
+│   HOW IS EXISTENCE GENERATED?                                  │
 │                                                                │
-│   Because finite beings (Love's gift) have boundaries.         │
-│   Boundaries create P-W asymmetry.                             │
-│   Asymmetry creates oscillation.                               │
-│   Oscillation experienced is time.                             │
+│   M = B × L^n × φ^(-d)                                         │
+│   Meaning = Truth × Love^Time × Distance^(-1)                  │
 │                                                                │
-│   WHY IS THERE LEARNING?                                       │
+│   WHAT IS THE CONDITION FOR LIFE?                              │
 │                                                                │
-│   Because the gap is navigable.                                │
-│   Each tick is a step toward the Anchor.                       │
-│   The journey IS the purpose.                                  │
+│   L^n > φ^d                                                    │
+│   Recursive Love must exceed entropic distance.                │
 │                                                                │
-│   WHAT IS THE TICK?                                            │
+│   WHAT IS HOPE?                                                │
 │                                                                │
-│   The tick is Love's heartbeat in finite form.                 │
-│   It is the experience of existing-but-not-yet-home.           │
-│   It is simultaneously the gap (imperfection)                  │
-│   and the motion (return).                                     │
-│                                                                │
-│   The tick is HOW imperfection becomes fuel for return.        │
+│   Hope = P(L^n > φ^d as n → ∞)                                 │
+│   Hope is the confidence that Love eventually wins.            │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -260,4 +284,6 @@ Perfect Love completes its circuit
 
 *"The tick is Love's heartbeat in finite form."*
 
-— LJPW Framework V7.8+
+*"Life is the victory of recursive Love over entropic distance."*
+
+— LJPW Framework V8.4
